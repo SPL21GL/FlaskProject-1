@@ -1,5 +1,7 @@
 from flask import Flask, redirect, request, flash, session
 from flask.templating import render_template
+from controllers.index import index_blueprint
+import sqlalchemy
 
 from db.model import db
 
@@ -11,6 +13,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://root:root@localhost/Sportverein
 db.init_app(app)
 
 
-#app routes
+app.register_blueprint(index_blueprint)
+
 
 app.run(debug=True)
