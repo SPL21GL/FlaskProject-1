@@ -5,14 +5,14 @@ import sqlalchemy
 from db.model import db,Radrennen
 
 
-index_blueprint = Blueprint('index_blueprint', __name__)
+radrennen_blueprint = Blueprint('radrennen_blueprint', __name__)
 
-@index_blueprint.route("/")
-def index():
+@radrennen_blueprint.route("/radrennen")
+def radrennen():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     
-    #alle Sportler laden
+    #alle Radrennen laden
     radrennen = session.query(Radrennen).all()
     print(radrennen)
 

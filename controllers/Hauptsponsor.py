@@ -5,14 +5,14 @@ import sqlalchemy
 from db.model import db,Hauptsponsor
 
 
-index_blueprint = Blueprint('index_blueprint', __name__)
+hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
 
-@index_blueprint.route("/")
-def index():
+@hauptsponsor_blueprint.route("/hauptsponsor")
+def hauptsponsor():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     
-    #alle Sportler laden
+    #alle Hauptsponsoren laden
     hauptsponsor = session.query(Hauptsponsor).all()
     print(hauptsponsor)
 

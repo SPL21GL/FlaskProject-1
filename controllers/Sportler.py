@@ -4,10 +4,10 @@ from flask import Blueprint
 import sqlalchemy
 from db.model import db,Sportler
 
-index_blueprint = Blueprint('index_blueprint', __name__)
+sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 
-@index_blueprint.route("/")
-def index():
+@sportler_blueprint.route("/sportler")
+def sportler():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     
