@@ -1,7 +1,7 @@
 from flask import Flask, redirect, request, flash, session
 from flask.templating import render_template
 from controllers.index import index_blueprint
-import sqlalchemy
+
 
 from db.model import db
 
@@ -14,6 +14,5 @@ db.init_app(app)
 
 
 app.register_blueprint(index_blueprint)
-
 
 app.run(debug=True)
