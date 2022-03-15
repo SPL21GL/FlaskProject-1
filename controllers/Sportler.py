@@ -31,15 +31,15 @@ def sportler_add():
 
         if addSportlerForm.validate_on_submit():
             newItem = Sportler()
-            newItem.title = addSportlerForm.Vorname.data
-            newItem.description = addSportlerForm.Nachname.data
-            newItem.dueDate = addSportlerForm.Land.data
-            newItem.isDone = addSportlerForm.Radmarke.data
+            newItem.Vorname = "addSportlerForm.Vorname.data"
+            newItem.Nachname = "addSportlerForm.Nachname.data"
+            newItem.Land = "addSportlerForm.Land.data"
+            newItem.Radmarke = "addSportlerForm.Radmarke.data"
 
             db.session.add(newItem)
             db.session.commit()
 
-            return render_template("sportlerAdd.html", form=addSportlerForm), redirect("/")
+            return redirect("/Sportler")
 
         else:
             raise "Fatal Error"
