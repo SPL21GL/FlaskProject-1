@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Titel</th>
+      <th scope="col">Land</th>
+      <th scope="col">Datum</th>
+      <th scope="col">Länge</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for rennen in Radrennen %}
+      <tr>
+        <td>{{Radrennen.Titel}}</td>
+        <td>{{Radrennen.Land}}</td>
+        <td>{{Radrennen.Datum}}</td>
+        <td>{{Radrennen.Länge}}</td>
+      </tr>
+    {% endfor %}
+
+    
+  </tbody>
+</table>
+
+{%endblock%}

@@ -7,7 +7,7 @@ from db.model import db,Hauptsponsor
 
 hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
 
-@hauptsponsor_blueprint.route("/hauptsponsor")
+@hauptsponsor_blueprint.route("/Hauptsponsor")
 def hauptsponsor():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session

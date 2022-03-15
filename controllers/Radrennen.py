@@ -7,7 +7,7 @@ from db.model import db,Radrennen
 
 radrennen_blueprint = Blueprint('radrennen_blueprint', __name__)
 
-@radrennen_blueprint.route("/radrennen")
+@radrennen_blueprint.route("/Radrennen")
 def radrennen():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session

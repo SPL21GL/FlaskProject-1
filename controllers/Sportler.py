@@ -6,7 +6,7 @@ from db.model import db,Sportler
 
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 
-@sportler_blueprint.route("/sportler")
+@sportler_blueprint.route("/Sportler")
 def sportler():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session
