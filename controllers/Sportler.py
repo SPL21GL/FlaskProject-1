@@ -17,7 +17,7 @@ def sportler():
 
     return render_template("sportler.html")
 
-@sportler_blueprint.route("/products/add", methods=["GET","POST"])
+@sportler_blueprint.route("/sportler/add", methods=["GET","POST"])
 def products_add():
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     sportler = session.query(Sportler).all()
@@ -30,6 +30,6 @@ def products_add():
             print("gültig")
             return render_template("sportler_add.html", form = addSportlerForm)
         else:
-            raise "Fatal"
+            raise "Fatal Error"
     else:
         return render_template("sportler_add.html",form = addSportlerForm)
