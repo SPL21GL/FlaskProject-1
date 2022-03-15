@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="post">
+    {{form.csrf_token}}
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Vorname</label>
+        {{form.Vorname)}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Vorname</label>
+        {{form.Nachname)}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Land</label>
+        {{form.Land)}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Radmarke</label>
+        {{form.Radmarke)}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}
