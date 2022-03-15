@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Land</th>
+      <th scope="col">Werbungsart</th>
+      <th scope="col">Sponsorbetrag</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for sponor in Hauptsponsor %}
+      <tr>
+        <td>{{Hauptsponsor.Name}}</td>
+        <td>{{Hauptsponsor.Land}}</td>
+        <td>{{Hauptsponsor.Werbungsart}}</td>
+        <td>{{Hauptsponsor.Sponsorbetrag}}</td>
+      </tr>
+    {% endfor %}
+
+    
+  </tbody>
+</table>
+
+{%endblock%}

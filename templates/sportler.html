@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Vorname</th>
+      <th scope="col">Nachname</th>
+      <th scope="col">Land</th>
+      <th scope="col">Radmarke</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for Sportler in sportler %}
+      <tr>
+        <td>{{Sportler.Vorname}}</td>
+        <td>{{Sportler.Nachname}}</td>
+        <td>{{Sportler.Land}}</td>
+        <td>{{Sportler.Radmarke}}</td>
+      </tr>
+    {% endfor %}
+
+    
+  </tbody>
+</table>
+
+{%endblock%}
