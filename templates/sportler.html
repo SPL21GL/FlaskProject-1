@@ -15,16 +15,15 @@
   </thead>
   <tbody>
 
-    {% for Sportler in sportler %}
+    {% for sportler in sportlers %}
       <tr>
-        <td>{{Sportler.Vorname}}</td>
-        <td>{{Sportler.Nachname}}</td>
-        <td>{{Sportler.Land}}</td>
-        <td>{{Sportler.Radmarke}}</td>
+        <td>{{sportler.Vorname}}</td>
+        <td>{{sportler.Nachname}}</td>
+        <td>{{sportler.Land}}</td>
+        <td>{{sportler.Radmarke}}</td>
       </tr>
     {% endfor %}
 
-    
   </tbody>
 </table>
 

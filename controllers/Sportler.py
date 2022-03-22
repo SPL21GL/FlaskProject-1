@@ -14,10 +14,10 @@ def sportler():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
 
     # alle Sportler laden
-    sportler = session.query(Sportler).all()
+    sportlers = session.query(Sportler).all()
     print(sportler)
 
-    return render_template("sportler.html")
+    return render_template("sportler.html", sportlers = sportlers)
 
 
 @sportler_blueprint.route("/sportler/add", methods=["GET", "POST"])
@@ -30,13 +30,13 @@ def sportler_add():
     if request.method == 'POST':
 
         if addSportlerForm.validate_on_submit():
-            newItem = Sportler()
-            newItem.Vorname = "addSportlerForm.Vorname.data"
-            newItem.Nachname = "addSportlerForm.Nachname.data"
-            newItem.Land = "addSportlerForm.Land.data"
-            newItem.Radmarke = "addSportlerForm.Radmarke.data"
+            sportler = Sportler()
+            sportler.Vorname = addSportlerForm.Vorname.data
+            sportler.Nachname = addSportlerForm.Nachname.data
+            sportler.Land = addSportlerForm.Land.data
+            sportler.Radmarke = addSportlerForm.Radmarke.data
 
-            db.session.add(newItem)
+            db.session.add(sportler)
             db.session.commit()
 
             return redirect("/Sportler")

@@ -16,4 +16,4 @@ def hauptsponsor():
     hauptsponsor = session.query(Hauptsponsor).all()
     print(hauptsponsor)
 
-    return render_template("hauptsponsor.html")
+    return render_template("hauptsponsor.html", hauptsponsor = hauptsponsor)

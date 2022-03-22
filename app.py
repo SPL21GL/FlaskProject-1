@@ -5,6 +5,7 @@ from controllers.Radrennen import radrennen_blueprint
 from controllers.Sportler import sportler_blueprint
 from controllers.Hauptsponsor import hauptsponsor_blueprint
 from db.model import db
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 app.secret_key = "VerySecretSecretKey"
