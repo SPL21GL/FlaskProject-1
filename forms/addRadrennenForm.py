@@ -8,4 +8,4 @@ class AddRadrennenForm(FlaskForm):
     Titel = StringField("Titel")
     Land = StringField("Land")
     Datum = DateField("Datum")
-    LaengeInKm = DecimalField("Länge in Km")
+    LaengeInKM = DecimalField("Länge in Km")

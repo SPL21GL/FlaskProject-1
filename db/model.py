@@ -24,7 +24,7 @@ class Radrennen(db.Model):
     Land = db.Column(db.Text)
     Titel = db.Column(db.String(64))
     Datum = db.Column(db.Date)
-    LängeInKm = db.Column(db.Integer)
+    LaengeInKM = db.Column(db.Integer)
 
 
 

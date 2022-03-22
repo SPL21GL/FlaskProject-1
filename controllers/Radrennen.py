@@ -32,7 +32,7 @@ def radrennen_add():
             rennen.Titel = addRadrennenForm.Titel.data
             rennen.Land = addRadrennenForm.Land.data
             rennen.Datum = addRadrennenForm.Datum.data
-            rennen.LängeInKm = addRadrennenForm.LaengeInKm.data
+            rennen.LaengeInKM = addRadrennenForm.LaengeInKM.data
 
             db.session.add(rennen)
             db.session.commit()
