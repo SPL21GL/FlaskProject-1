@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="POST" action="/radrennen/add">
+    {{form.csrf_token}}
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Titel</label>
+        {{form.Titel(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Land</label>
+        {{form.Land(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Datum</label>
+        {{form.Datum(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Länge in Km</label>
+        {{form.LaengeInKm(class_="form-control")}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

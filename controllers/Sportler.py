@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import request, redirect
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
@@ -17,7 +17,7 @@ def sportler():
     sportlers = session.query(Sportler).all()
     print(sportler)
 
-    return render_template("sportler.html", sportlers = sportlers)
+    return render_template("Sportler/sportler.html", sportlers = sportlers)
 
 
 @sportler_blueprint.route("/sportler/add", methods=["GET", "POST"])
@@ -44,4 +44,4 @@ def sportler_add():
         else:
             raise "Fatal Error"
     else:
-        return render_template("sportlerAdd.html", form=addSportlerForm)
+        return render_template("Sportler/sportlerAdd.html", form=addSportlerForm)

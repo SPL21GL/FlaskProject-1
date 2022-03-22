@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<form method="POST" action="/sponsor/add">
+    {{form.csrf_token}}
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Name</label>
+        {{form.Name(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Sponsorbetrag</label>
+        {{form.Sponsorbetrag(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Land</label>
+        {{form.Land(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="productCode" class="form-label">Werbungsart</label>
+        {{form.Werbungsart(class_="form-control")}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<a href="/radrennen/add" class="btn btn-info" role="button">Radrennen Hinzufügen</a>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Titel</th>
+      <th scope="col">Land</th>
+      <th scope="col">Datum</th>
+      <th scope="col">Länge in Km</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for rennen in radrennen %}
+      <tr>
+        <td>{{rennen.Titel}}</td>
+        <td>{{rennen.Land}}</td>
+        <td>{{rennen.Datum}}</td>
+        <td>{{rennen.Länge}}</td>
+      </tr>
+    {% endfor %}
+
+    
+  </tbody>
+</table>
+
+{%endblock%}
