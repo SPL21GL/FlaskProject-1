@@ -3,4 +3,4 @@ from wtforms.fields.simple import StringField
 from wtforms import validators
 
 class SponsorDeleteForm(FlaskForm):
-    Name = StringField("Name",[validators.InputRequired()])
+    SponsorID = StringField("SponsorID",[validators.InputRequired()])

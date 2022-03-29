@@ -15,18 +15,18 @@
   </thead>
   <tbody>
 
-    {% for sponsor in hauptsponsor %}
+    {% for sponsor in hauptsponsoren %}
       <tr>
         <td>{{sponsor.Name}}</td>
         <td>{{sponsor.Land}}</td>
         <td>{{sponsor.Werbungsart}}</td>
         <td>{{sponsor.Sponsorbetrag}}</td>
         <td>
-          <a class="btn btn-outline-secondary" href="/products/edit?productCode={{product.productCode}}">✏️</a>
-          <form action="/products/delete" method="post" style="display: inline;">
+          <a class="btn btn-outline-secondary" href="/hauptsponsor/edit?Name={{sponsor.SponsorID}}">✏️</a>
+          <form action="/Hauptsponsor/delete" method="post" style="display: inline;">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <input type="hidden" name="productCode" id="productCode" value="{{product.productCode}}">
-            <a class="btn btn-outline-secondary" href="#" onclick="deleteProduct(this); return false;">🗑️</a>
+            <input type="hidden" name="SponsorID" id="SponsorID" value="{{sponsor.SponsorID}}">
+            <a class="btn btn-outline-secondary" href="#" onclick="deleteSponsor(this); return false;">🗑️</a>
           </form>
         </td>     
       </tr>

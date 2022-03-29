@@ -13,10 +13,10 @@ def hauptsponsor():
     session : sqlalchemy.orm.scoping.scoped_session = db.session
     
     #alle Hauptsponsoren laden
-    hauptsponsor = session.query(Hauptsponsor).all()
+    hauptsponsoren = session.query(Hauptsponsor).all()
     print(hauptsponsor)
 
-    return render_template("Hauptsponsor/hauptsponsor.html", hauptsponsor = hauptsponsor)
+    return render_template("Hauptsponsor/hauptsponsor.html", hauptsponsoren = hauptsponsoren)
 
 @hauptsponsor_blueprint.route("/sponsor/add", methods=["GET", "POST"])
 def Hauptsponsor_add():
@@ -44,21 +44,21 @@ def Hauptsponsor_add():
     else:
         return render_template("Hauptsponsor/hauptsponsorAdd.html", form=addSponsorForm)
 
-@hauptsponsor_blueprint.route("/products/delete", methods=["post"])
-def deleteProduct():
-
+@hauptsponsor_blueprint.route("/Hauptsponsor/delete", methods=["post"])
+def deleteSponsor():
+    
     deleteSponsorForm = SponsorDeleteForm()
 
     if deleteSponsorForm.validate_on_submit():
 
-        SponsorToDelete = deleteSponsorForm.productCode.data
-        NameToDelete = db.session.query(Hauptsponsor).filter(Hauptsponsor.Name == SponsorToDelete)
+        sponsorToDelete = deleteSponsorForm.SponsorID.data
+        NameToDelete = db.session.query(Hauptsponsor).filter(Hauptsponsor.SponsorID == sponsorToDelete)
         NameToDelete.delete()
         
+        flash(f"Sponsor with id {NameToDelete} has been deleted")    
         db.session.commit()
     else:
-        print("Fatal Error")
+        flash("Fatal Error")
     
-    flash(f"Product with id {NameToDelete} has been deleted")    
 
     return redirect("/Hauptsponsor")

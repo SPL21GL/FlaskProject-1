@@ -1,12 +1,8 @@
-function deleteElement(element) {
+function deleteSponsor(element) {
 
-    if(window.confirm("Wollen Sie das Item wirklich löschen"))
+    if(window.confirm("Wollen Sie diesen Sponsor wirklich löschen?"))
     {
-        element.parentElement.submit();
+        element.parentElement.submit(this);
     }
 
 }
-
-/* 
-document.querySelector("a[href='/products']").classList.add("active")
-*/
