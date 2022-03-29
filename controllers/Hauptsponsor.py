@@ -1,10 +1,10 @@
-from flask import request, redirect
+from flask import request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db,Hauptsponsor
 from forms.addSponsorForm import AddSponsorForm
-
+from forms.SponsorDelete import SponsorDeleteForm
 hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
 
 @hauptsponsor_blueprint.route("/Hauptsponsor")
@@ -43,3 +43,22 @@ def Hauptsponsor_add():
             raise "Fatal Error"
     else:
         return render_template("Hauptsponsor/hauptsponsorAdd.html", form=addSponsorForm)
+
+@hauptsponsor_blueprint.route("/products/delete", methods=["post"])
+def deleteProduct():
+
+    deleteSponsorForm = SponsorDeleteForm()
+
+    if deleteSponsorForm.validate_on_submit():
+
+        SponsorToDelete = deleteSponsorForm.productCode.data
+        NameToDelete = db.session.query(Hauptsponsor).filter(Hauptsponsor.Name == SponsorToDelete)
+        NameToDelete.delete()
+        
+        db.session.commit()
+    else:
+        print("Fatal Error")
+    
+    flash(f"Product with id {NameToDelete} has been deleted")    
+
+    return redirect("/Hauptsponsor")
