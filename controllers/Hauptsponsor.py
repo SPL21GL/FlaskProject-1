@@ -62,3 +62,6 @@ def deleteSponsor():
     
 
     return redirect("/Hauptsponsor")
+
+
+    

@@ -16,12 +16,19 @@
   <tbody>
 
     {% for sportler in sportlers %}
-      <tr>
-        <td>{{sportler.Vorname}}</td>
-        <td>{{sportler.Nachname}}</td>
-        <td>{{sportler.Land}}</td>
-        <td>{{sportler.Radmarke}}</td>
-      </tr>
+    <tr>
+      <td>{{sportler.Vorname}}</td>
+      <td>{{sportler.Nachname}}</td>
+      <td>{{sportler.Land}}</td>
+      <td>{{sportler.Radmarke}}</td>
+      <td>
+        <a class="btn btn-outline-secondary" href="/sportler/edit?Name={{sportler.SportlerID}}">✏️</a>
+        <form action="/sportler/delete" method="post" style="display: inline;">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="SportlerID" id="SportlerID" value="{{sportler.SponsorID}}">
+          <a class="btn btn-outline-secondary" href="#" onclick="deleteSportler(this); return false;">🗑️</a>
+      </td>
+    </tr>
     {% endfor %}
 
   </tbody>

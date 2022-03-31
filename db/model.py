@@ -5,7 +5,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-
 class Hauptsponsor(db.Model):
     __tablename__ = 'hauptsponsor'
 
@@ -14,7 +13,6 @@ class Hauptsponsor(db.Model):
     Sponsorbetrag = db.Column(db.Integer)
     Werbungsart = db.Column(db.Text)
     Land = db.Column(db.String(64))
-
 
 
 class Radrennen(db.Model):
@@ -27,7 +25,6 @@ class Radrennen(db.Model):
     LaengeInKM = db.Column(db.Integer)
 
 
-
 class Sportler(db.Model):
     __tablename__ = 'sportler'
 
@@ -38,14 +35,16 @@ class Sportler(db.Model):
     Radmarke = db.Column(db.String(128))
 
 
-
 class SportlerRadrennen(db.Model):
     __tablename__ = 'sportler_radrennen'
 
-    Sportler_Radrennen_ID = db.Column(db.Integer, primary_key=True, unique=True)
+    Sportler_Radrennen_ID = db.Column(
+        db.Integer, primary_key=True, unique=True)
     SportlerID = db.Column(db.ForeignKey('sportler.SportlerID'), index=True)
     RennenID = db.Column(db.ForeignKey('radrennen.RennenID'), index=True)
     Best_Zeit = db.Column(db.DateTime)
 
-    radrennen = db.relationship('Radrennen', primaryjoin='SportlerRadrennen.RennenID == Radrennen.RennenID', backref='sportler_radrennens')
-    sportler = db.relationship('Sportler', primaryjoin='SportlerRadrennen.SportlerID == Sportler.SportlerID', backref='sportler_radrennens')
+    radrennen = db.relationship(
+        'Radrennen', primaryjoin='SportlerRadrennen.RennenID == Radrennen.RennenID', backref='sportler_radrennens')
+    sportler = db.relationship(
+        'Sportler', primaryjoin='SportlerRadrennen.SportlerID == Sportler.SportlerID', backref='sportler_radrennens')

@@ -6,3 +6,11 @@ function deleteSponsor(element) {
     }
 
 }
+
+function deleteSportler(element) {
+    
+    if(window.confirm("Wollen Sie diesen Sportler wirklich löschen?"))
+    {
+        element.parentElement.submit(this);
+    }
+}
