@@ -7,7 +7,7 @@ create table if not exists Radrennen
     Land text,
     Titel varchar(64),
     Datum date,
-    LängeInKm int
+    LaengeInKm int
 );
 
 create table if not exists Hauptsponsor

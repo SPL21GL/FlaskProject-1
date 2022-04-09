@@ -3,8 +3,8 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db, Sportler
-from forms.addSportlerForm import AddSportlerForm
-from forms.sportler_delete import SportlerDeleteForm
+from forms.Sportler.addSportlerForm import AddSportlerForm
+from forms.Sportler.sportler_delete import SportlerDeleteForm
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 
 
@@ -49,12 +49,10 @@ def sportler_add():
 
 @sportler_blueprint.route("/sportler/delete", methods=["post"])
 def delete_sportler():
-    #"""delete Sportler function""""
-
     deleteSportlerForm = SportlerDeleteForm()
 
     if deleteSportlerForm.validate_on_submit():
-
+        print("hi")
         sportlerToDelete = deleteSportlerForm.SportlerID.data
         NameToDelete = db.session.query(Sportler).filter(
             Sportler.SportlerID == sportlerToDelete)

@@ -25,7 +25,7 @@
         <a class="btn btn-outline-secondary" href="/sportler/edit?Name={{sportler.SportlerID}}">✏️</a>
         <form action="/sportler/delete" method="post" style="display: inline;">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="SportlerID" id="SportlerID" value="{{sportler.SponsorID}}">
+          <input type="hidden" name="SportlerID" id="SportlerID" value="{{sportler.SportlerID}}">
           <a class="btn btn-outline-secondary" href="#" onclick="deleteSportler(this); return false;">🗑️</a>
       </td>
     </tr>
