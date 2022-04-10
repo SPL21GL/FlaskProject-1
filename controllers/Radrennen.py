@@ -63,3 +63,10 @@ def delete_radrennen():
         flash("Fatal Error")
 
     return redirect("/radrennen")
+
+
+@radrennen_blueprint.route("radrennen/edit", methods=["get","post"])
+def edit_radrennen():
+    sessiton :  sqlalchemy.orm.scoping.scoped_session = db.session
+
+    #edit_radrennen_form =
