@@ -3,7 +3,7 @@ use Sportverein;
 
 create table if not exists Radrennen
 (
-	RennenID int auto_increment unique key primary key,
+	RadrennenID int auto_increment unique key primary key,
     Land text,
     Titel varchar(64),
     Datum date,
@@ -32,9 +32,9 @@ create table if not exists Sportler_Radrennen
 (
     Sportler_Radrennen_ID int auto_increment unique key primary key,
     SportlerID int,
-    RennenID int,
+    RadrennenID int,
     Best_Zeit timestamp
 );
 
 alter table Sportler_Radrennen add constraint SportlerID foreign key (SportlerID) references Sportler(SportlerID);
-alter table Sportler_Radrennen add constraint RennenID foreign key (RennenID) references Radrennen(RennenID);
+alter table Sportler_Radrennen add constraint RadrennenID foreign key (RadrennenID) references Radrennen(RadrennenID);

@@ -3,8 +3,8 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db, Sportler
-from forms.Sportler.addSportlerForm import Add_sportler_form
-from forms.Sportler.sportler_delete import Delete_sportler_form
+from forms.Sportler.add_sportler_form import Add_sportler_form
+from forms.Sportler.delete_sportler_form import Delete_sportler_form
 
 
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
