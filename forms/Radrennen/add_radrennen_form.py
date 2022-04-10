@@ -4,7 +4,8 @@ from wtforms.fields.simple import StringField
 from wtforms.fields.datetime import DateField
 from wtforms.fields import DecimalField
 
-class AddRadrennenForm(FlaskForm):
+
+class Add_radrennen_form(FlaskForm):
     Titel = StringField("Titel")
     Land = StringField("Land")
     Datum = DateField("Datum")

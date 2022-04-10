@@ -2,9 +2,9 @@
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from controllers.index import index_blueprint
-from controllers.Radrennen import radrennen_blueprint
-from controllers.Sportler import sportler_blueprint
-from controllers.Hauptsponsor import hauptsponsor_blueprint
+from controllers.radrennen import radrennen_blueprint
+from controllers.sportler import sportler_blueprint
+from controllers.hauptsponsor import hauptsponsor_blueprint
 from db.model import db
 
 app = Flask(__name__)

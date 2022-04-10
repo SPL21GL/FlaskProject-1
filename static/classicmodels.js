@@ -14,3 +14,11 @@ function deleteSportler(element) {
         element.parentElement.submit(this);
     }
 }
+
+function deleteRadrennen(element) {
+    
+    if(window.confirm("Wollen Sie dieses Radrennen wirklich löschen?"))
+    {
+        element.parentElement.submit(this);
+    }
+}

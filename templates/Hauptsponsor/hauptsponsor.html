@@ -2,7 +2,7 @@
 
 {%block body%}
 
-<a href="/sponsor/add" class="btn btn-info" role="button">Sponsor Hinzufügen</a>
+<a href="/hauptsponsor/add" class="btn btn-info" role="button">Sponsor Hinzufügen</a>
 
 <table class="table">
   <thead>
@@ -14,7 +14,6 @@
     </tr>
   </thead>
   <tbody>
-
     {% for sponsor in hauptsponsoren %}
       <tr>
         <td>{{sponsor.Name}}</td>
@@ -23,7 +22,7 @@
         <td>{{sponsor.Sponsorbetrag}}</td>
         <td>
           <a class="btn btn-outline-secondary" href="/hauptsponsor/edit?Name={{sponsor.SponsorID}}">✏️</a>
-          <form action="/Hauptsponsor/delete" method="post" style="display: inline;">
+          <form action="/hauptsponsor/delete" method="post" style="display: inline;">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="SponsorID" id="SponsorID" value="{{sponsor.SponsorID}}">
             <a class="btn btn-outline-secondary" href="#" onclick="deleteSponsor(this); return false;">🗑️</a>
@@ -31,8 +30,6 @@
         </td>     
       </tr>
     {% endfor %}
-
-    
   </tbody>
 </table>
 

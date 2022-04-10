@@ -14,17 +14,20 @@
     </tr>
   </thead>
   <tbody>
-
     {% for rennen in radrennen %}
       <tr>
         <td>{{rennen.Titel}}</td>
         <td>{{rennen.Land}}</td>
         <td>{{rennen.Datum}}</td>
         <td>{{rennen.LaengeInKM}}</td>
+        <td><a class="btn btn-outline-secondary" href="/radrennen/edit?Name={{radrennen.RennenID}}">✏️</a>
+          <form action="/radrennen/delete" method="post" style="display: inline;">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="RennenID" id="SportlerID" value="{{radrennen.RennenID}}">
+            <a class="btn btn-outline-secondary" href="#" onclick="deleteRadrennen(this); return false;">🗑️</a>
+        </td>
       </tr>
     {% endfor %}
-
-    
   </tbody>
 </table>
 

@@ -3,11 +3,13 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db,Radrennen
-from forms.addRadrennenForm import AddRadrennenForm
+from forms.Radrennen.add_radrennen_form import Add_radrennen_form
+
 
 radrennen_blueprint = Blueprint('radrennen_blueprint', __name__)
 
-@radrennen_blueprint.route("/Radrennen")
+
+@radrennen_blueprint.route("/radrennen")
 def radrennen():
     #workaround für sesssion Autocomplete
     session : sqlalchemy.orm.scoping.scoped_session = db.session
@@ -16,30 +18,30 @@ def radrennen():
     radrennen = session.query(Radrennen).all()
     print(radrennen)
 
-    return render_template("Radrennen/radrennen.html", radrennen=radrennen)
+    return render_template("radrennen/radrennen.html", radrennen=radrennen)
+
 
 @radrennen_blueprint.route("/radrennen/add", methods=["GET", "POST"])
-def radrennen_add():
+def add_radrennen():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     rennen = session.query(Radrennen).all()
 
-    addRadrennenForm = AddRadrennenForm()
+    add_radrennen_form = Add_radrennen_form()
 
     if request.method == 'POST':
-
-        if addRadrennenForm.validate_on_submit():
+        if add_radrennen_form.validate_on_submit():
             rennen = Radrennen()
-            rennen.Titel = addRadrennenForm.Titel.data
-            rennen.Land = addRadrennenForm.Land.data
-            rennen.Datum = addRadrennenForm.Datum.data
-            rennen.LaengeInKM = addRadrennenForm.LaengeInKM.data
+            rennen.Titel = add_radrennen_form.Titel.data
+            rennen.Land = add_radrennen_form.Land.data
+            rennen.Datum = add_radrennen_form.Datum.data
+            rennen.LaengeInKM = add_radrennen_form.LaengeInKM.data
 
             db.session.add(rennen)
             db.session.commit()
 
-            return redirect("/Radrennen")
+            return redirect("/radrennen")
 
         else:
             raise "Fatal Error"
     else:
-        return render_template("Radrennen/radrennenAdd.html", form=addRadrennenForm)
+        return render_template("radrennen/add_radrennen.html", form=add_radrennen_form)

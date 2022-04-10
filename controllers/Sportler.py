@@ -3,12 +3,14 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db, Sportler
-from forms.Sportler.addSportlerForm import AddSportlerForm
-from forms.Sportler.sportler_delete import SportlerDeleteForm
+from forms.Sportler.addSportlerForm import Add_sportler_form
+from forms.Sportler.sportler_delete import Delete_sportler_form
+
+
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 
 
-@sportler_blueprint.route("/Sportler")
+@sportler_blueprint.route("/sportler")
 def sportler():
     # workaround für sesssion Autocomplete
     session: sqlalchemy.orm.scoping.scoped_session = db.session
@@ -17,50 +19,48 @@ def sportler():
     sportlers = session.query(Sportler).all()
     print(sportler)
 
-    return render_template("Sportler/sportler.html", sportlers=sportlers)
+    return render_template("sportler/sportler.html", sportlers=sportlers)
 
 
 @sportler_blueprint.route("/sportler/add", methods=["GET", "POST"])
-def sportler_add():
+def add_sportler():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     sportler = session.query(Sportler).all()
 
-    addSportlerForm = AddSportlerForm()
+    add_sportler_form = Add_sportler_form()
 
     if request.method == 'POST':
 
-        if addSportlerForm.validate_on_submit():
+        if add_sportler_form.validate_on_submit():
             sportler = Sportler()
-            sportler.Vorname = addSportlerForm.Vorname.data
-            sportler.Nachname = addSportlerForm.Nachname.data
-            sportler.Land = addSportlerForm.Land.data
-            sportler.Radmarke = addSportlerForm.Radmarke.data
+            sportler.Vorname = add_sportler_form.Vorname.data
+            sportler.Nachname = add_sportler_form.Nachname.data
+            sportler.Land = add_sportler_form.Land.data
+            sportler.Radmarke = add_sportler_form.Radmarke.data
 
             db.session.add(sportler)
             db.session.commit()
 
-            return redirect("/Sportler")
+            return redirect("/sportler")
 
         else:
             raise "Fatal Error"
     else:
-        return render_template("Sportler/sportlerAdd.html", form=addSportlerForm)
+        return render_template("sportler/add_sportler.html", form=add_sportler_form)
 
 
 @sportler_blueprint.route("/sportler/delete", methods=["post"])
 def delete_sportler():
-    deleteSportlerForm = SportlerDeleteForm()
+    delete_sportler_form = Delete_sportler_form()
 
-    if deleteSportlerForm.validate_on_submit():
-        print("hi")
-        sportlerToDelete = deleteSportlerForm.SportlerID.data
-        NameToDelete = db.session.query(Sportler).filter(
-            Sportler.SportlerID == sportlerToDelete)
-        NameToDelete.delete()
+    if delete_sportler_form.validate_on_submit():
+        sportler_to_delete = delete_sportler_form.SportlerID.data
+        sportlerID_to_delete = db.session.query(Sportler).filter(Sportler.SportlerID == sportler_to_delete)
+        sportlerID_to_delete.delete()
 
-        flash(f"Sponsor with id {NameToDelete} has been deleted")
+        flash(f"Sportler with id {sportlerID_to_delete} has been deleted")
         db.session.commit()
     else:
         flash("Fatal Error")
 
-    return redirect("/Sportler")
+    return redirect("/sportler")
