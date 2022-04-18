@@ -43,7 +43,7 @@ def add_radrennen():
             return redirect("/radrennen")
 
         else:
-            raise "Fatal Error"
+            return render_template("radrennen/add_radrennen.html", form=add_radrennen_form)
     else:
         return render_template("radrennen/add_radrennen.html", form=add_radrennen_form)
 
@@ -65,7 +65,7 @@ def delete_radrennen():
     return redirect("/radrennen")
 
 
-@radrennen_blueprint.route("radrennen/edit", methods=["get","post"])
+@radrennen_blueprint.route("/radrennen/edit", methods=["get","post"])
 def edit_radrennen():
     sessiton :  sqlalchemy.orm.scoping.scoped_session = db.session
 

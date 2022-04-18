@@ -44,7 +44,7 @@ def add_sportler():
             return redirect("/sportler")
 
         else:
-            raise "Fatal Error"
+            return render_template("sportler/add_sportler.html", form=add_sportler_form)
     else:
         return render_template("sportler/add_sportler.html", form=add_sportler_form)
 

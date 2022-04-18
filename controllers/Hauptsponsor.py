@@ -26,6 +26,7 @@ def hauptsponsor():
 def add_hauptsponsor():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     sponsor = session.query(Hauptsponsor).all()
+    
     add_sponsor_form = Add_sponsor_form()
 
     if request.method == 'POST':
@@ -42,7 +43,7 @@ def add_hauptsponsor():
             return redirect("/hauptsponsor")
 
         else:
-            raise "Fatal Error"
+            return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
     else:
         return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
 
