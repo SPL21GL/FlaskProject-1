@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<h2>Edit Sportler</h2>
+
+<form method="post">
+    {{form.csrf_token}}
+
+    <!-- {{ form.errors }} -->
+
+    <div class="mb-3">
+        <label for="Vorname" class="form-label">Vorname</label>
+        {{form.Vorname(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Nachname" class="form-label">Nachname</label>
+        {{form.Nachname(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Land" class="form-label">Land</label>
+        {{form.Land(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Radmarke" class="form-label">Radmarke</label>
+        {{form.Radmarke(class_="form-control")}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

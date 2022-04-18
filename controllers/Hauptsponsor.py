@@ -66,4 +66,32 @@ def delete_hauptsponsor():
     return redirect("/hauptsponsor")
 
 
-    
+#@radrennen_blueprint.route("/radrennen/edit", methods=["get","post"])
+#def edit_radrennen():
+#    session :  sqlalchemy.orm.scoping.scoped_session = db.session
+#
+#    edit_radrennen_form = Add_radrennen_form()
+#
+#    radrennen_id = request.args["RadrennenID"]
+#    radrennen_to_edit = session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
+#    
+#    if request.method == "POST":
+#        if edit_radrennen_form.validate_on_submit():
+#            radrennen_id = edit_radrennen_form.RadrennenID.data
+#            radrennen_to_edit = db.session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
+#            
+#            radrennen_to_edit.Land = edit_radrennen_form.Land.data
+#            radrennen_to_edit.Titel = edit_radrennen_form.Titel.data
+#            radrennen_to_edit.Datum = edit_radrennen_form.Datum.data
+#            radrennen_to_edit.LaengeInKm = edit_radrennen_form.LaengeInKm.data
+#            
+#            db.session.commit()
+#        return redirect("/radrennen")
+#    
+#    else:
+#        edit_radrennen_form.Land.data = radrennen_to_edit.Land
+#        edit_radrennen_form.Titel.data = radrennen_to_edit.Titel
+#        edit_radrennen_form.Datum.data = radrennen_to_edit.Datum
+#        edit_radrennen_form.LaengeInKm.data = radrennen_to_edit.LaengeInKm
+#        
+#        return render_template("radrennen/edit_radrennen.html")

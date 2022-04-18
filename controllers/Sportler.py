@@ -1,7 +1,7 @@
 from flask import request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
-import sqlalchemy
+import sqlalchemy, sqlalchemy.orm
 from db.model import db, Sportler
 from forms.Sportler.add_sportler_form import Add_sportler_form
 from forms.Sportler.delete_sportler_form import Delete_sportler_form
@@ -64,3 +64,36 @@ def delete_sportler():
         flash("Fatal Error")
 
     return redirect("/sportler")
+
+
+@sportler_blueprint.route("/sportler/edit", methods=["get","post"])
+def edit_sportler():
+    session: sqlalchemy.orm.scoping.scoped_session = db.session
+
+    edit_sportler_form = Add_sportler_form()
+
+    sportler = request.args["SportlerID"]
+    print(sportler,"hi")
+    sportler_to_edit = session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
+    
+    if request.method == "POST":
+        if edit_sportler_form.validate_on_submit():
+            sportler = edit_sportler_form.Vorname.data
+            print(sportler,"hi")
+            sportler_to_edit = db.session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
+            
+            sportler_to_edit.Land = edit_sportler_form.Land.data
+            sportler_to_edit.Vorname = edit_sportler_form.Vorname.data
+            sportler_to_edit.Nachname = edit_sportler_form.Nachname.data
+            sportler_to_edit.Radmarke = edit_sportler_form.Radmarke.data
+
+            db.session.commit()
+        return redirect("/sportler")
+    
+    else:
+        edit_sportler_form.Land.data = sportler_to_edit.Land
+        edit_sportler_form.Vorname.data = sportler_to_edit.Vorname
+        edit_sportler_form.Nachname.data = sportler_to_edit.Nachname
+        edit_sportler_form.Radmarke.data = sportler_to_edit.Radmarke
+        
+        return render_template("sportler/edit_sportler.html", form = edit_sportler_form)

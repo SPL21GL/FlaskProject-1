@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+
+{%block body%}
+
+<h2>Edit Radrennen</h2>
+
+<form method="post">
+    {{form.csrf_token}}
+
+    <!-- {{ form.errors }} -->
+
+    <div class="mb-3">
+        <label for="Titel" class="form-label">Titel</label>
+        {{form.Titel(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Land" class="form-label">Land</label>
+        {{form.Land(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="Datum" class="form-label">Datum</label>
+        {{form.Datum(class_="form-control")}}
+    </div>
+
+    <div class="mb-3">
+        <label for="LaengeInKm" class="form-label">LaengeInKm</label>
+        {{form.LaengeInKm(class_="form-control")}}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{%endblock%}

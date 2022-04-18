@@ -6,6 +6,7 @@ from wtforms.fields import DecimalField
 from wtforms import validators
 
 class Add_radrennen_form(FlaskForm):
+    RadrennenID = StringField("RadrennenID")
     Titel = StringField("Titel")
     Land = StringField("Land")
     Datum = DateField("Datum")

@@ -1,7 +1,8 @@
-from flask import request, redirect, flash
+from flask import Flask, request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
+import sqlalchemy.orm
 from db.model import db,Radrennen
 from forms.Radrennen.add_radrennen_form import Add_radrennen_form
 from forms.Radrennen.delete_radrennen_form import Delete_radrennen_form
@@ -67,6 +68,31 @@ def delete_radrennen():
 
 @radrennen_blueprint.route("/radrennen/edit", methods=["get","post"])
 def edit_radrennen():
-    sessiton :  sqlalchemy.orm.scoping.scoped_session = db.session
+    session :  sqlalchemy.orm.scoping.scoped_session = db.session
 
-    #edit_radrennen_form =
+    edit_radrennen_form = Add_radrennen_form()
+
+    radrennen_id = request.args["RadrennenID"]
+    radrennen_to_edit = session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
+    
+    if request.method == "POST":
+        if edit_radrennen_form.validate_on_submit():
+            radrennen_id = edit_radrennen_form.RadrennenID.data
+            radrennen_to_edit = db.session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
+            
+            radrennen_to_edit.Land = edit_radrennen_form.Land.data
+            radrennen_to_edit.Titel = edit_radrennen_form.Titel.data
+            radrennen_to_edit.Datum = edit_radrennen_form.Datum.data
+            radrennen_to_edit.LaengeInKm = edit_radrennen_form.LaengeInKm.data
+            
+            db.session.commit()
+        return redirect("/radrennen")
+    
+    else:
+        edit_radrennen_form.Land.data = radrennen_to_edit.Land
+        edit_radrennen_form.Titel.data = radrennen_to_edit.Titel
+        edit_radrennen_form.Datum.data = radrennen_to_edit.Datum
+        edit_radrennen_form.LaengeInKm.data = radrennen_to_edit.LaengeInKm
+        
+        return render_template("radrennen/edit_radrennen.html")
+    
