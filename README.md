@@ -1,0 +1,2 @@
+# FlaskProject-1
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4938e8ee2cec4b2f80fd306f8d99b0d4)](https://app.codacy.com/gh/SPL21GL/FlaskProject-1?utm_source=github.com&utm_medium=referral&utm_content=SPL21GL/FlaskProject-1&utm_campaign=Badge_Grade_Settings)
