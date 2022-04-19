@@ -3,7 +3,7 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db,Hauptsponsor
-from forms.Hauptsponsor.add_hauptsponsor_form import Add_sponsor_form
+from forms.Hauptsponsor.add_hauptsponsor_form import Add_hauptsponsor_form
 from forms.Hauptsponsor.delete_hauptsponsor_form import Delete_hauptsponsor_form
 
 
@@ -27,7 +27,7 @@ def add_hauptsponsor():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     sponsor = session.query(Hauptsponsor).all()
     
-    add_sponsor_form = Add_sponsor_form()
+    add_sponsor_form = Add_hauptsponsor_form()
 
     if request.method == 'POST':
         if add_sponsor_form.validate_on_submit():
@@ -66,32 +66,32 @@ def delete_hauptsponsor():
     return redirect("/hauptsponsor")
 
 
-#@radrennen_blueprint.route("/radrennen/edit", methods=["get","post"])
-#def edit_radrennen():
-#    session :  sqlalchemy.orm.scoping.scoped_session = db.session
-#
-#    edit_radrennen_form = Add_radrennen_form()
-#
-#    radrennen_id = request.args["RadrennenID"]
-#    radrennen_to_edit = session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
-#    
-#    if request.method == "POST":
-#        if edit_radrennen_form.validate_on_submit():
-#            radrennen_id = edit_radrennen_form.RadrennenID.data
-#            radrennen_to_edit = db.session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
-#            
-#            radrennen_to_edit.Land = edit_radrennen_form.Land.data
-#            radrennen_to_edit.Titel = edit_radrennen_form.Titel.data
-#            radrennen_to_edit.Datum = edit_radrennen_form.Datum.data
-#            radrennen_to_edit.LaengeInKm = edit_radrennen_form.LaengeInKm.data
-#            
-#            db.session.commit()
-#        return redirect("/radrennen")
-#    
-#    else:
-#        edit_radrennen_form.Land.data = radrennen_to_edit.Land
-#        edit_radrennen_form.Titel.data = radrennen_to_edit.Titel
-#        edit_radrennen_form.Datum.data = radrennen_to_edit.Datum
-#        edit_radrennen_form.LaengeInKm.data = radrennen_to_edit.LaengeInKm
-#        
-#        return render_template("radrennen/edit_radrennen.html")
+@hauptsponsor_blueprint.route("/hauptsponsor/edit", methods=["get","post"])
+def edit_hauptsponsor():
+    session :  sqlalchemy.orm.scoping.scoped_session = db.session
+    edit_hauptsponsor_form = Add_hauptsponsor_form()
+
+    sponsor_id = request.args["SponsorID"]
+    hauptsponsor_to_edit = session.query(Hauptsponsor).filter(Hauptsponsor.SponsorID == sponsor_id).first()
+    
+    if request.method == "POST":
+        if edit_hauptsponsor_form.validate_on_submit():
+            hauptsponsor_to_edit = db.session.query(Hauptsponsor).filter(Hauptsponsor.SponsorID == sponsor_id).first()
+            
+            hauptsponsor_to_edit.SponsorID = edit_hauptsponsor_form.SponsorID.data
+            hauptsponsor_to_edit.Name = edit_hauptsponsor_form.Name.data
+            hauptsponsor_to_edit.Sponsorbetrag = edit_hauptsponsor_form.Sponsorbetrag.data
+            hauptsponsor_to_edit.Werbungsart = edit_hauptsponsor_form.Werbungsart.data
+            hauptsponsor_to_edit.Land = edit_hauptsponsor_form.Land.data
+            
+            db.session.commit()
+        return redirect("/hauptsponsor")
+    
+    else:
+        edit_hauptsponsor_form.SponsorID.data = hauptsponsor_to_edit.SponsorID
+        edit_hauptsponsor_form.Name.data = hauptsponsor_to_edit.Name
+        edit_hauptsponsor_form.Sponsorbetrag.data = hauptsponsor_to_edit.Sponsorbetrag
+        edit_hauptsponsor_form.Werbungsart.data = hauptsponsor_to_edit.Werbungsart
+        edit_hauptsponsor_form.Land.data = hauptsponsor_to_edit.Land
+        
+        return render_template("hauptsponsor/edit_hauptsponsor.html", form = edit_hauptsponsor_form)

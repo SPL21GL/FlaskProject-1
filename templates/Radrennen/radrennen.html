@@ -7,6 +7,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">RadrennenID</th>
       <th scope="col">Titel</th>
       <th scope="col">Land</th>
       <th scope="col">Datum</th>
@@ -16,11 +17,12 @@
   <tbody>
     {% for rennen in radrennen %}
       <tr>
+        <td>{{rennen.RadrennenID}}</td>
         <td>{{rennen.Titel}}</td>
         <td>{{rennen.Land}}</td>
         <td>{{rennen.Datum}}</td>
         <td>{{rennen.LaengeInKm}}</td>
-        <td><a class="btn btn-outline-secondary" href="/radrennen/edit?Name={{rennen.RadrennenID}}">✏️</a>
+        <td><a class="btn btn-outline-secondary" name="RadrennenID" id="RadrennenID" href="/radrennen/edit?RadrennenID={{rennen.RadrennenID}}">✏️</a>
           <form action="/radrennen/delete" method="post" style="display: inline;">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="RadrennenID" id="RadrennenID" value="{{rennen.RadrennenID}}">

@@ -7,6 +7,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">SponsorID</th>
       <th scope="col">Name</th>
       <th scope="col">Land</th>
       <th scope="col">Werbungsart</th>
@@ -16,12 +17,13 @@
   <tbody>
     {% for sponsor in hauptsponsoren %}
       <tr>
+        <td>{{sponsor.SponsorID}}</td>
         <td>{{sponsor.Name}}</td>
         <td>{{sponsor.Land}}</td>
         <td>{{sponsor.Werbungsart}}</td>
         <td>{{sponsor.Sponsorbetrag}}</td>
         <td>
-          <a class="btn btn-outline-secondary" href="/hauptsponsor/edit?Name={{sponsor.SponsorID}}">✏️</a>
+          <a class="btn btn-outline-secondary" name="SponsorID" id="SponsorID" href="/hauptsponsor/edit?SponsorID={{sponsor.SponsorID}}">✏️</a>
           <form action="/hauptsponsor/delete" method="post" style="display: inline;">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="SponsorID" id="SponsorID" value="{{sponsor.SponsorID}}">

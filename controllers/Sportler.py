@@ -5,7 +5,6 @@ import sqlalchemy, sqlalchemy.orm
 from db.model import db, Sportler
 from forms.Sportler.add_sportler_form import Add_sportler_form
 from forms.Sportler.delete_sportler_form import Delete_sportler_form
-from forms.Sportler.edit_sportler_form import Edit_sportler_form
 
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 

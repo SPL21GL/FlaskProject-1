@@ -77,9 +77,9 @@ def edit_radrennen():
     
     if request.method == "POST":
         if edit_radrennen_form.validate_on_submit():
-            radrennen_id = edit_radrennen_form.RadrennenID.data
             radrennen_to_edit = db.session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()
             
+            radrennen_to_edit.RadrennenID = edit_radrennen_form.RadrennenID.data
             radrennen_to_edit.Land = edit_radrennen_form.Land.data
             radrennen_to_edit.Titel = edit_radrennen_form.Titel.data
             radrennen_to_edit.Datum = edit_radrennen_form.Datum.data
@@ -89,10 +89,11 @@ def edit_radrennen():
         return redirect("/radrennen")
     
     else:
+        edit_radrennen_form.RadrennenID.data = radrennen_to_edit.RadrennenID
         edit_radrennen_form.Land.data = radrennen_to_edit.Land
         edit_radrennen_form.Titel.data = radrennen_to_edit.Titel
         edit_radrennen_form.Datum.data = radrennen_to_edit.Datum
         edit_radrennen_form.LaengeInKm.data = radrennen_to_edit.LaengeInKm
         
-        return render_template("radrennen/edit_radrennen.html")
+        return render_template("radrennen/edit_radrennen.html", form = edit_radrennen_form)
     

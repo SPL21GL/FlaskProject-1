@@ -7,6 +7,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">SportlerID</th>
       <th scope="col">Vorname</th>
       <th scope="col">Nachname</th>
       <th scope="col">Land</th>
@@ -16,6 +17,7 @@
   <tbody>
     {% for sportler in sportlers %}
     <tr>
+      <td>{{sportler.SportlerID}}</td>
       <td>{{sportler.Vorname}}</td>
       <td>{{sportler.Nachname}}</td>
       <td>{{sportler.Land}}</td>
