@@ -78,19 +78,22 @@ def edit_sportler():
     
     if request.method == "POST":
         if edit_sportler_form.validate_on_submit():
-            sportler = edit_sportler_form.SportlerID.data
+            #sportler = edit_sportler_form.SportlerID.data
             print(sportler,"hi")
             sportler_to_edit = db.session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
-            
+            sportler_to_edit.SportlerID = edit_sportler_form.SportlerID.data
             sportler_to_edit.Land = edit_sportler_form.Land.data
             sportler_to_edit.Vorname = edit_sportler_form.Vorname.data
             sportler_to_edit.Nachname = edit_sportler_form.Nachname.data
             sportler_to_edit.Radmarke = edit_sportler_form.Radmarke.data
+            
+            
 
             db.session.commit()
         return redirect("/sportler")
     
     else:
+        edit_sportler_form.SportlerID.data = sportler_to_edit.SportlerID
         edit_sportler_form.Land.data = sportler_to_edit.Land
         edit_sportler_form.Vorname.data = sportler_to_edit.Vorname
         edit_sportler_form.Nachname.data = sportler_to_edit.Nachname
@@ -98,42 +101,3 @@ def edit_sportler():
         
         return render_template("sportler/edit_sportler.html", form = edit_sportler_form)
 
-#@sportler_blueprint.route("/sportler/edit", methods=["get","post"])
-#def submit_edit_form():
-#    edit_sportler_form = Edit_sportler_form()
-#
-#    if edit_sportler_form.validate_on_submit():
-#        print("Submit wurde durchgeführt")
-#
-#        sportler_id = edit_sportler_form.SportlerID.data
-#
-#        sportler_to_edit = db.session.query(Sportler).filter(Sportler.SportlerID == sportler_id).first()
-#        print(sportler_to_edit,edit_sportler_form)
-#        sportler_to_edit.Vorname = edit_sportler_form.Vorname.data
-#        
-#        sportler_to_edit.Nachname = edit_sportler_form.Nachname.data
-#        sportler_to_edit.Land = edit_sportler_form.Land.data
-#        sportler_to_edit.Radmarke = edit_sportler_form.Radmarke.data
-#
-#        db.session.commit()
-#
-#        return redirect("/sportler")
-#    else:
-#        
-#        return render_template("sportler/edit_sportler.html", form = edit_sportler_form)
-#
-#@sportler_blueprint.route("/sportler/edit")
-#def show_edit_form():
-#    sportler_id = request.args["SportlerID"]
-#
-#    Organisator_to_edit = db.session.query(Sportler).filter(Sportler.SportlerID == sportler_id).first()
-#
-#    edit_sportler_form = Edit_sportler_form()
-#
-#    edit_sportler_form.SportlerID.data = Organisator_to_edit.SportlerID
-#    edit_sportler_form.Vorname.data = Organisator_to_edit.Vorname
-#    edit_sportler_form.Nachname.data = Organisator_to_edit.Nachname
-#    edit_sportler_form.Land.data = Organisator_to_edit.Land
-#    edit_sportler_form.Radmarke.data = Organisator_to_edit.Radmarke
-#
-#    return render_template("edit_sportler.html", form = edit_sportler_form)
