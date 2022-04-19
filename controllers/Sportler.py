@@ -69,26 +69,21 @@ def delete_sportler():
 @sportler_blueprint.route("/sportler/edit", methods=["get","post"])
 def edit_sportler():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
-
     edit_sportler_form = Add_sportler_form()
 
     sportler = request.args["SportlerID"]
-    print(sportler,"hi")
     sportler_to_edit = session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
     
     if request.method == "POST":
         if edit_sportler_form.validate_on_submit():
-            #sportler = edit_sportler_form.SportlerID.data
-            print(sportler,"hi")
             sportler_to_edit = db.session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
+            
             sportler_to_edit.SportlerID = edit_sportler_form.SportlerID.data
             sportler_to_edit.Land = edit_sportler_form.Land.data
             sportler_to_edit.Vorname = edit_sportler_form.Vorname.data
             sportler_to_edit.Nachname = edit_sportler_form.Nachname.data
             sportler_to_edit.Radmarke = edit_sportler_form.Radmarke.data
             
-            
-
             db.session.commit()
         return redirect("/sportler")
     
