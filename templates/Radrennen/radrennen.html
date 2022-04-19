@@ -27,6 +27,7 @@
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" name="RadrennenID" id="RadrennenID" value="{{rennen.RadrennenID}}">
             <a class="btn btn-outline-secondary" href="#" onclick="deleteRadrennen(this); return false;">🗑️</a>
+          </form>
         </td>
       </tr>
     {% endfor %}
