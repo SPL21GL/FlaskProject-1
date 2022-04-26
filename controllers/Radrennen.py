@@ -4,8 +4,8 @@ from flask import Blueprint
 import sqlalchemy
 import sqlalchemy.orm
 from db.model import db,Radrennen
-from forms.radrennen.add_radrennen_form import Add_radrennen_form
-from forms.radrennen.delete_radrennen_form import Delete_radrennen_form
+from forms.radrennen.AddRadrennenForm import AddRadrennenForm
+from forms.radrennen.DeleteRadrennenForm import DeleteRadrennenForm
 
 
 radrennen_blueprint = Blueprint('radrennen_blueprint', __name__)
@@ -28,7 +28,7 @@ def add_radrennen():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     rennen = session.query(Radrennen).all()
 
-    add_radrennen_form = Add_radrennen_form()
+    add_radrennen_form = AddRadrennenForm()
 
     if request.method == 'POST':
         if add_radrennen_form.validate_on_submit():
@@ -51,7 +51,7 @@ def add_radrennen():
 
 @radrennen_blueprint.route("/radrennen/delete", methods=["post"])
 def delete_radrennen():
-    delete_radrennen_form = Delete_radrennen_form()
+    delete_radrennen_form = DeleteRadrennenForm()
 
     if delete_radrennen_form.validate_on_submit():
         radrennen_to_delete = delete_radrennen_form.RadrennenID.data
@@ -70,7 +70,7 @@ def delete_radrennen():
 def edit_radrennen():
     session :  sqlalchemy.orm.scoping.scoped_session = db.session
 
-    edit_radrennen_form = Add_radrennen_form()
+    edit_radrennen_form = AddRadrennenForm()
 
     radrennen_id = request.args["RadrennenID"]
     radrennen_to_edit = session.query(Radrennen).filter(Radrennen.RadrennenID == radrennen_id).first()

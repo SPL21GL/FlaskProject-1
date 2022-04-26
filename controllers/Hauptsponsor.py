@@ -3,8 +3,9 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db,Hauptsponsor
-from forms.hauptsponsor.add_hauptsponsor_form import Add_hauptsponsor_form
-from forms.hauptsponsor.delete_hauptsponsor_form import Delete_hauptsponsor_form
+from forms.hauptsponsor.AddHauptsponsorForm import AddHauptsponsorForm
+from forms.hauptsponsor.DeleteHauptsponsorForm import DeleteHauptsponsorForm
+
 
 
 hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
@@ -27,7 +28,7 @@ def add_hauptsponsor():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     sponsor = session.query(Hauptsponsor).all()
     
-    add_sponsor_form = Add_hauptsponsor_form()
+    add_sponsor_form = AddHauptsponsorForm()
 
     if request.method == 'POST':
         if add_sponsor_form.validate_on_submit():
@@ -48,7 +49,7 @@ def add_hauptsponsor():
 
 @hauptsponsor_blueprint.route("/hauptsponsor/delete", methods=["post"])
 def delete_hauptsponsor():
-    delete_hauptsponsor_form = Delete_hauptsponsor_form()
+    delete_hauptsponsor_form = DeleteHauptsponsorForm()
 
     if delete_hauptsponsor_form.validate_on_submit():
         sponsor_to_delete = delete_hauptsponsor_form.SponsorID.data
@@ -67,7 +68,7 @@ def delete_hauptsponsor():
 @hauptsponsor_blueprint.route("/hauptsponsor/edit", methods=["get","post"])
 def edit_hauptsponsor():
     session :  sqlalchemy.orm.scoping.scoped_session = db.session
-    edit_hauptsponsor_form = Add_hauptsponsor_form()
+    edit_hauptsponsor_form = AddHauptsponsorForm()
 
     sponsor_id = request.args["SponsorID"]
     hauptsponsor_to_edit = session.query(Hauptsponsor).filter(Hauptsponsor.SponsorID == sponsor_id).first()

@@ -3,8 +3,8 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy, sqlalchemy.orm
 from db.model import db, Sportler
-from forms.sportler.add_sportler_form import Add_sportler_form
-from forms.sportler.delete_sportler_form import Delete_sportler_form
+from forms.sportler.AddSportlerForm import AddSportlerForm
+from forms.sportler.DeleteSportlerForm import DeleteSportlerForm
 
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 
@@ -26,7 +26,7 @@ def add_sportler():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     sportler = session.query(Sportler).all()
 
-    add_sportler_form = Add_sportler_form()
+    add_sportler_form = AddSportlerForm()
 
     if request.method == 'POST':
 
@@ -50,7 +50,7 @@ def add_sportler():
 
 @sportler_blueprint.route("/sportler/delete", methods=["post"])
 def delete_sportler():
-    delete_sportler_form = Delete_sportler_form()
+    delete_sportler_form = DeleteSportlerForm()
 
     if delete_sportler_form.validate_on_submit():
         sportler_to_delete = delete_sportler_form.SportlerID.data
@@ -68,7 +68,7 @@ def delete_sportler():
 @sportler_blueprint.route("/sportler/edit", methods=["get","post"])
 def edit_sportler():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
-    edit_sportler_form = Add_sportler_form()
+    edit_sportler_form = AddSportlerForm()
 
     sportler = request.args["SportlerID"]
     sportler_to_edit = session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
