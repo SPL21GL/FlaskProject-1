@@ -44,8 +44,6 @@ def add_hauptsponsor():
 
         else:
             return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
-    #else:
-    #    return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
 
 
 @hauptsponsor_blueprint.route("/hauptsponsor/delete", methods=["post"])
