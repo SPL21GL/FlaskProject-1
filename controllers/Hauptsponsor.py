@@ -3,8 +3,8 @@ from flask.templating import render_template
 from flask import Blueprint
 import sqlalchemy
 from db.model import db,Hauptsponsor
-from forms.Hauptsponsor.add_hauptsponsor_form import Add_hauptsponsor_form
-from forms.Hauptsponsor.delete_hauptsponsor_form import Delete_hauptsponsor_form
+from forms.hauptsponsor.add_hauptsponsor_form import Add_hauptsponsor_form
+from forms.hauptsponsor.delete_hauptsponsor_form import Delete_hauptsponsor_form
 
 
 hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
@@ -44,8 +44,8 @@ def add_hauptsponsor():
 
         else:
             return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
-    else:
-        return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
+    #else:
+    #    return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
 
 
 @hauptsponsor_blueprint.route("/hauptsponsor/delete", methods=["post"])
