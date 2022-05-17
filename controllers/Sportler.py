@@ -1,7 +1,8 @@
 from flask import request, redirect, flash
 from flask.templating import render_template
 from flask import Blueprint
-import sqlalchemy, sqlalchemy.orm
+import sqlalchemy
+import sqlalchemy.orm
 from db.model import db, Sportler
 from forms.sportler.AddSportlerForm import AddSportlerForm
 from forms.sportler.DeleteSportlerForm import DeleteSportlerForm
@@ -54,7 +55,8 @@ def delete_sportler():
 
     if delete_sportler_form.validate_on_submit():
         sportler_to_delete = delete_sportler_form.SportlerID.data
-        sportlerID_to_delete = db.session.query(Sportler).filter(Sportler.SportlerID == sportler_to_delete)
+        sportlerID_to_delete = db.session.query(Sportler).filter(
+            Sportler.SportlerID == sportler_to_delete)
         sportlerID_to_delete.delete()
 
         flash(f"Sportler with id {sportlerID_to_delete} has been deleted")
@@ -65,33 +67,34 @@ def delete_sportler():
     return redirect("/sportler")
 
 
-@sportler_blueprint.route("/sportler/edit", methods=["get","post"])
+@sportler_blueprint.route("/sportler/edit", methods=["get", "post"])
 def edit_sportler():
     session: sqlalchemy.orm.scoping.scoped_session = db.session
     edit_sportler_form = AddSportlerForm()
 
     sportler = request.args["SportlerID"]
-    sportler_to_edit = session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
-    
+    sportler_to_edit = session.query(Sportler).filter(
+        Sportler.SportlerID == sportler).first()
+
     if request.method == "POST":
         if edit_sportler_form.validate_on_submit():
-            sportler_to_edit = db.session.query(Sportler).filter(Sportler.SportlerID == sportler).first()
-            
+            sportler_to_edit = db.session.query(Sportler).filter(
+                Sportler.SportlerID == sportler).first()
+
             sportler_to_edit.SportlerID = edit_sportler_form.SportlerID.data
             sportler_to_edit.Land = edit_sportler_form.Land.data
             sportler_to_edit.Vorname = edit_sportler_form.Vorname.data
             sportler_to_edit.Nachname = edit_sportler_form.Nachname.data
             sportler_to_edit.Radmarke = edit_sportler_form.Radmarke.data
-            
+
             db.session.commit()
         return redirect("/sportler")
-    
+
     else:
         edit_sportler_form.SportlerID.data = sportler_to_edit.SportlerID
         edit_sportler_form.Land.data = sportler_to_edit.Land
         edit_sportler_form.Vorname.data = sportler_to_edit.Vorname
         edit_sportler_form.Nachname.data = sportler_to_edit.Nachname
         edit_sportler_form.Radmarke.data = sportler_to_edit.Radmarke
-        
-        return render_template("sportler/edit_sportler.html", form = edit_sportler_form)
 
+        return render_template("sportler/edit_sportler.html", form=edit_sportler_form)

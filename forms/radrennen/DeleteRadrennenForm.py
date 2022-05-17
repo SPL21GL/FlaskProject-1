@@ -4,4 +4,4 @@ from wtforms import validators
 
 
 class DeleteRadrennenForm(FlaskForm):
-    RadrennenID = StringField("RadrennenID",[validators.InputRequired()])
+    RadrennenID = StringField("RadrennenID", [validators.InputRequired()])

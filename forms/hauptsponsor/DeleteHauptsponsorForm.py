@@ -4,4 +4,4 @@ from wtforms import validators
 
 
 class DeleteHauptsponsorForm(FlaskForm):
-    SponsorID = StringField("SponsorID",[validators.InputRequired()])
+    SponsorID = StringField("SponsorID", [validators.InputRequired()])
