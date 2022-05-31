@@ -12,10 +12,8 @@ sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 
 @sportler_blueprint.route("/sportler")
 def sportler():
-    # workaround für sesssion Autocomplete
     session: sqlalchemy.orm.scoping.scoped_session = db.session
 
-    # alle Sportler laden
     sportlers = session.query(Sportler).all()
     print(sportler)
 

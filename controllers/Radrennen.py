@@ -13,10 +13,8 @@ radrennen_blueprint = Blueprint('radrennen_blueprint', __name__)
 
 @radrennen_blueprint.route("/radrennen")
 def radrennen():
-    # workaround für sesssion Autocomplete
     session: sqlalchemy.orm.scoping.scoped_session = db.session
 
-    # alle Radrennen laden
     radrennen = session.query(Radrennen).all()
     print(radrennen)
 
@@ -59,7 +57,6 @@ def delete_radrennen():
             Radrennen.RadrennenID == radrennen_to_delete)
         RadrennenID_to_delete.delete()
 
-        # flash(f"Radrennen with id {{RadrennenID_to_delete}} has been deleted")
         db.session.commit()
     else:
         flash("Fatal Error")

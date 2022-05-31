@@ -12,10 +12,8 @@ hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
 
 @hauptsponsor_blueprint.route("/hauptsponsor")
 def hauptsponsor():
-    # workaround für sesssion Autocomplete
     session: sqlalchemy.orm.scoping.scoped_session = db.session
 
-    # alle Hauptsponsoren laden
     hauptsponsoren = session.query(Hauptsponsor).all()
     print(hauptsponsor)
 
@@ -42,8 +40,8 @@ def add_hauptsponsor():
 
             return redirect("/hauptsponsor")
 
-        else:
-            return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
+    else:
+        return render_template("hauptsponsor/add_hauptsponsor.html", form=add_sponsor_form)
 
 
 @hauptsponsor_blueprint.route("/hauptsponsor/delete", methods=["post"])
@@ -56,7 +54,6 @@ def delete_hauptsponsor():
             Hauptsponsor.SponsorID == sponsor_to_delete)
         sponsorID_to_delete.delete()
 
-        flash(f"Sponsor with id {sponsorID_to_delete} has been deleted")
         db.session.commit()
 
     else:

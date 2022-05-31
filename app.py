@@ -1,4 +1,3 @@
-#"""main""""
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from controllers.radrennen import radrennen_blueprint
