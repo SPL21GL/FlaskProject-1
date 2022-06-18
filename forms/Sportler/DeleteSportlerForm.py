@@ -3,5 +3,5 @@ from wtforms.fields.simple import StringField
 from wtforms import validators
 
 
-class Delete_sportler_form(FlaskForm):
-    SportlerID = StringField("SportlerID",[validators.InputRequired()])
+class DeleteSportlerForm(FlaskForm):
+    SportlerID = StringField("SportlerID", [validators.InputRequired()])
