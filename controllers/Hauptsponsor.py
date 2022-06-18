@@ -46,6 +46,7 @@ def add_hauptsponsor():
 
 @hauptsponsor_blueprint.route("/hauptsponsor/delete", methods=["post"])
 def delete_hauptsponsor():
+    session:  sqlalchemy.orm.scoping.scoped_session = db.session
     delete_hauptsponsor_form = DeleteHauptsponsorForm()
 
     if delete_hauptsponsor_form.validate_on_submit():
