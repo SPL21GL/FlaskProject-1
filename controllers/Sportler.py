@@ -4,8 +4,8 @@ from flask import Blueprint
 import sqlalchemy
 import sqlalchemy.orm
 from db.model import db, Sportler
-from forms.sportler.AddSportlerForm import AddSportlerForm
-from forms.sportler.DeleteSportlerForm import DeleteSportlerForm
+from forms.Sportler.AddSportlerForm import AddSportlerForm
+from forms.Sportler.DeleteSportlerForm import DeleteSportlerForm
 
 sportler_blueprint = Blueprint('sportler_blueprint', __name__)
 

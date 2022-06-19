@@ -4,8 +4,8 @@ from flask import Blueprint
 import sqlalchemy
 import sqlalchemy.orm
 from db.model import db, Radrennen
-from forms.radrennen.AddRadrennenForm import AddRadrennenForm
-from forms.radrennen.DeleteRadrennenForm import DeleteRadrennenForm
+from forms.Radrennen.AddRadrennenForm import AddRadrennenForm
+from forms.Radrennen.DeleteRadrennenForm import DeleteRadrennenForm
 
 
 radrennen_blueprint = Blueprint('radrennen_blueprint', __name__)

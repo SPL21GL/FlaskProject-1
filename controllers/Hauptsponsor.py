@@ -1,16 +1,9 @@
 from flask import request, redirect, flash, Blueprint
 from flask.templating import render_template
 import sqlalchemy
-<<<<<<< HEAD
-
-from db.model import db,Hauptsponsor
-from forms.Hauptsponsor.add_hauptsponsor_form import Add_hauptsponsor_form
-from forms.Hauptsponsor.delete_hauptsponsor_form import Delete_hauptsponsor_form
-=======
 from db.model import db, Hauptsponsor
-from forms.hauptsponsor.AddHauptsponsorForm import AddHauptsponsorForm
-from forms.hauptsponsor.DeleteHauptsponsorForm import DeleteHauptsponsorForm
->>>>>>> 6947154f10829a700d1e548b02ee48036d1b13e1
+from forms.Hauptsponsor.AddHauptsponsorForm import AddHauptsponsorForm
+from forms.Hauptsponsor.DeleteHauptsponsorForm import DeleteHauptsponsorForm
 
 
 hauptsponsor_blueprint = Blueprint('hauptsponsor_blueprint', __name__)
